@@ -1,0 +1,31 @@
+<div id="game-container">
+    <div class="user-info">
+        <input type="text" id="promo-code" placeholder="أدخل كود الخصم (مثل DMN)">
+        <button onclick="applyCode()">تفعيل الكود</button>
+    </div>
+
+    <div id="wheel-wrapper">
+        <canvas id="lucky-wheel" width="400" height="400"></canvas>
+        <div id="pointer"></div> 
+    </div>
+
+    <button id="spin-btn" onclick="requestSpin()">إبدأ اللف!</button>
+</div>
+
+<script>
+async function requestSpin() {
+    // 1. يرسل الموقع طلب للسيرفر (قاعدة البيانات) للتأكد من وجود لفات
+    // 2. السيرفر يخصم لفة ويرسل "زاوية الدوران" التي تقف عند الجائزة التي حددتها أنت
+    // 3. العجلة تدور وتتوقف بناءً على رد السيرفر
+    console.log("طلب لفة من سيرفر DMN...");
+}
+
+function applyCode() {
+    const code = document.getElementById('promo-code').value;
+    if(code === "DMN") {
+        alert("مبروك! حصلت على لفة مجانية.");
+        // هنا يتم تحديث الرصيد في قاعدة البيانات
+    }
+}
+</script>
+
