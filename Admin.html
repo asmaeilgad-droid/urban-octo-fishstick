@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم DMN - إدارة اللفات</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f0f; color: white; padding: 20px; }
+        .admin-box { background: #1e1e1e; padding: 20px; border-radius: 10px; border: 1px solid #ff4757; max-width: 500px; margin: auto; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+        button { width: 100%; padding: 10px; background: #ff4757; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .user-list { margin-top: 20px; border-top: 1px solid #444; padding-top: 10px; }
+        .user-item { display: flex; justify-content: space-between; background: #2e2e2e; padding: 8px; margin-bottom: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="admin-box">
+    <h2>التحكم في أعضاء DMN</h2>
+    
+    <label>اسم المستخدم (أو ID):</label>
+    <input type="text" id="target-user" placeholder="مثلاً: User#1234">
+    
+    <label>عدد اللفات التي تريد إضافتها:</label>
+    <input type="number" id="spins-to-add" value="1">
+    
+    <button onclick="updateSpins()">إرسال اللفات فوراً</button>
+
+    <div class="user-list" id="users-display">
+        <h3>قائمة الأعضاء الحاليين:</h3>
+        <div id="list-content">جاري تحميل البيانات...</div>
+    </div>
+</div>
+
+<script>
+    // ملاحظة: هنا ستقوم بربط الـ Firebase Config الخاص بك لاحقاً
+    
+    function updateSpins() {
+        const user = document.getElementById('target-user').value;
+        const count = document.getElementById('spins-to-add').value;
+
+        if(!user) return alert("اكتب اسم العضو أولاً!");
+
+        // هذا السطر يقوم بتحديث قاعدة البيانات فوراً
+        console.log(`تم إضافة ${count} لفة للمستخدم ${user}`);
+        alert(`تمت العملية بنجاح لـ ${user}`);
+        
+        // كود الربط الفعلي مع Firebase سيكون هنا:
+        // db.ref('users/' + user).update({ spins: increment(count) });
+    }
+
+    // عرض وهمي لكيفية ظهور القائمة عندك
+    const mockUsers = [
+        {name: "Gamer_01", spins: 12},
+        {name: "Shadow_DMN", spins: 5}
+    ];
+
+    document.getElementById('list-content').innerHTML = mockUsers.map(u => `
+        <div class="user-item">
+            <span>${u.name}</span>
+            <span>${u.spins} لفة</span>
+        </div>
+    `).join('');
+</script>
+</body>
+</html>
+
