@@ -1,0 +1,15 @@
+{
+  "name": "dmn-wheel-system",
+  "version": "1.0.0",
+  "description": "نظام عجلة الحظ الخاص بـ DMN",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@replit/database": "^2.0.2",
+    "path": "^0.12.7"
+  }
+}
+
